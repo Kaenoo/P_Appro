@@ -15,12 +15,14 @@ namespace GestContact
             // Creation of views
             FormMenu formMenu = new FormMenu();
             Views.AddContact addContact = new Views.AddContact();
+            Views.AllContact allContact = new Views.AllContact();
+            Views.OneContact oneContact = new Views.OneContact();
 
             // Creation of model
             Models.DataContact data = new Models.DataContact();
 
             // Creation of controller
-            Controllers.ControlContact controlContact = new Controllers.ControlContact(data, addContact, formMenu);
+            Controllers.ControlContact controlContact = new Controllers.ControlContact(data, addContact, formMenu, allContact, oneContact);
 
             Application.Run(formMenu);
         }

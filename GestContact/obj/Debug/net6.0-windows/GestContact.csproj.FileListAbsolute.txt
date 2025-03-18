@@ -41,3 +41,6 @@ D:\TPI\P_appro\GestContact\GestContact\bin\Debug\net6.0-windows\runtimes\win-x64
 D:\TPI\P_appro\GestContact\GestContact\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
 D:\TPI\P_appro\GestContact\GestContact\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 D:\TPI\P_appro\GestContact\GestContact\obj\Debug\net6.0-windows\GestContact.csproj.CopyComplete
+D:\TPI\P_appro\GestContact\GestContact\obj\Debug\net6.0-windows\GestContact.Properties.Resources.resources
+D:\TPI\P_appro\GestContact\GestContact\obj\Debug\net6.0-windows\GestContact.Views.AllContact.resources
+D:\TPI\P_appro\GestContact\GestContact\obj\Debug\net6.0-windows\GestContact.Views.OneContact.resources

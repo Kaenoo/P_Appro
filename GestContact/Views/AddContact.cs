@@ -15,7 +15,6 @@ namespace GestContact.Views
     public partial class AddContact : Form
     {
         ControlContact _controlContact;
-
         public ControlContact controlContact { get { return _controlContact; } set { _controlContact = value; } }
 
 

@@ -14,19 +14,28 @@ namespace GestContact.Controllers
         private DataContact _dataContact;
         private AddContact _addContact;
         private FormMenu _formMenu;
+        private AllContact _allContact;
+        private OneContact _oneContact;
 
 
-        public ControlContact(DataContact data, AddContact addContact, FormMenu menu)
+        public ControlContact(DataContact data, AddContact addContact, FormMenu menu, AllContact allContact, OneContact oneContact)
         {
             _dataContact = data;
             _addContact = addContact;
             _formMenu = menu;
+            _allContact = allContact;
+            _oneContact = oneContact;
 
             _dataContact.controlContact = this;
             _addContact.controlContact = this;
             _formMenu.controlContact = this;
+            _allContact.controlContact = this;
+            _oneContact.controlContact = this;
+        }
 
-
+        public void configNameTitle(string name)
+        {
+            _oneContact.nameTitle = name;
         }
 
         /// <summary>
@@ -43,13 +52,32 @@ namespace GestContact.Controllers
             {
                 _addContact.Show();
             }
+            else if(nameview == "allContact")
+            {
+                _allContact.Show();
+            }
+            else if(nameview == "OneContact")
+            { 
+                _oneContact.Show();
+            }
         }
 
-        public void showInfoContact(int id)
+        /// <summary>
+        /// Retourne les informations d'un contact
+        /// </summary>
+        /// <param name="name"></param>
+        public string[] showInfoContact(string name)
         {
-            _dataContact.GetClientById(id);
+            return _dataContact.getContactByName(name);
         }
 
+        /// <summary>
+        /// Gère l'ajout d'un contact
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="phone"></param>
+        /// <param name="email"></param>
+        /// <param name="city"></param>
         public void addNewContact(string name, string phone, string email, string city)
         {
             _dataContact.addContact(name, phone, email, city);

@@ -45,7 +45,7 @@ namespace GestContact.Models
         /// Récupère les informations d'un client
         /// </summary>
         /// <param name="idContact"></param>
-        public void GetClientById(int idContact)
+        public void GetContactById(int idContact)
         {
             try
             {
@@ -80,6 +80,51 @@ namespace GestContact.Models
                 myConnection.Close();
             }
         }
+
+        /// <summary>
+        /// Récupère les informations d'un contact avec son nom
+        /// </summary>
+        /// <param name="name"></param>
+        public string[] getContactByName(string name)
+        {
+            try
+            {
+                myConnection.Open();
+                MySqlCommand myCommand = new MySqlCommand(@"SELECT * FROM t_contact WHERE Name LIKE @Name;", myConnection);
+                myCommand.Parameters.AddWithValue("@Name", "%" + name + "%");
+
+                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                {
+                    if (myReader.Read()) // Lire la première ligne trouvée
+                    {
+                        int id = myReader.GetInt32("idContact");
+                        name = myReader.GetString("Name");
+                        string email = myReader.GetString("Phone");
+                        string phone = myReader.GetString("Email");
+                        string city = myReader.GetString("City");
+
+                        return new string[] { id.ToString(), name, email, phone, city };
+
+                        //MessageBox.Show($"Client trouvé : {name}, {email}, {phone}, {city}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Aucun client trouvé avec ce nom.");
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Erreur MySQL : {ex.Message}");
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+
+            return null;
+        }
+
 
         /// <summary>
         /// Ajouter un contact
@@ -122,7 +167,5 @@ namespace GestContact.Models
                 myConnection.Close();
             }
         }
-    
-    
     }
 }

@@ -4,6 +4,12 @@
     <Compile Update="Views\AddContact.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Views\AllContact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\OneContact.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Views\FormMenu.cs">
       <SubType>Form</SubType>
     </Compile>
