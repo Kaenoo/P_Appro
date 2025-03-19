@@ -30,6 +30,7 @@
         {
             this.lbl_TitleAllContact = new System.Windows.Forms.Label();
             this.btn_Home = new System.Windows.Forms.Button();
+            this.tab_lay_panel_contact = new System.Windows.Forms.TableLayoutPanel();
             this.SuspendLayout();
             // 
             // lbl_TitleAllContact
@@ -53,12 +54,27 @@
             this.btn_Home.UseVisualStyleBackColor = true;
             this.btn_Home.Click += new System.EventHandler(this.btn_Home_Click);
             // 
+            // tab_lay_panel_contact
+            // 
+            this.tab_lay_panel_contact.ColumnCount = 4;
+            this.tab_lay_panel_contact.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.93168F));
+            this.tab_lay_panel_contact.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.06832F));
+            this.tab_lay_panel_contact.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 231F));
+            this.tab_lay_panel_contact.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.tab_lay_panel_contact.Location = new System.Drawing.Point(158, 118);
+            this.tab_lay_panel_contact.Name = "tab_lay_panel_contact";
+            this.tab_lay_panel_contact.RowCount = 1;
+            this.tab_lay_panel_contact.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tab_lay_panel_contact.Size = new System.Drawing.Size(714, 294);
+            this.tab_lay_panel_contact.TabIndex = 2;
+            // 
             // AllContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.IndianRed;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.tab_lay_panel_contact);
             this.Controls.Add(this.btn_Home);
             this.Controls.Add(this.lbl_TitleAllContact);
             this.Name = "AllContact";
@@ -72,5 +88,6 @@
 
         private Label lbl_TitleAllContact;
         private Button btn_Home;
+        private TableLayoutPanel tab_lay_panel_contact;
     }
 }

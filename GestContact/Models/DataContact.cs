@@ -167,5 +167,121 @@ namespace GestContact.Models
                 myConnection.Close();
             }
         }
+
+        /// <summary>
+        /// Supprime un contact
+        /// </summary>
+        /// <param name="idContact"></param>
+        public void deleteContact(int idContact)
+        {
+            try
+            {
+                myConnection.Open();
+                MySqlCommand myCommand = new MySqlCommand(@"DELETE FROM `t_contact` WHERE `idContact` = @idContact;", myConnection);
+
+                myCommand.Parameters.AddWithValue("@idContact", idContact);
+
+                int rowsAffected = myCommand.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Contact supprimé avec succès !");
+                }
+                else
+                {
+                    MessageBox.Show("Échec de la suppression du contact.");
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Erreur MySQL : {ex.Message}");
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
+        /// <summary>
+        /// Met à jour un contact
+        /// </summary>
+        /// <param name="idContact"></param>
+        /// <param name="name"></param>
+        /// <param name="phone"></param>
+        /// <param name="email"></param>
+        /// <param name="city"></param>
+        public void updateContact(int idContact,string name, string phone, string email, string city)
+        {
+            try
+            {
+                myConnection.Open();
+                MySqlCommand myCommand = new MySqlCommand(@"UPDATE `t_contact` SET `Name`= @name,
+                                `Phone`= @phone,`Email`= @email,`City`= @city WHERE `idContact` = @idContact;", myConnection);
+
+                myCommand.Parameters.AddWithValue("@idContact", idContact);
+                myCommand.Parameters.AddWithValue("@name", name);
+                myCommand.Parameters.AddWithValue("@phone", phone);
+                myCommand.Parameters.AddWithValue("@email", email);
+                myCommand.Parameters.AddWithValue("@city", city);
+
+                int rowsAffected = myCommand.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Contact mis à jour avec succès !");
+                }
+                else
+                {
+                    MessageBox.Show("Échec de mise à jour du contact.");
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Erreur MySQL : {ex.Message}");
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
+        /// <summary>
+        /// Récupère tous les contacts
+        /// </summary>
+        /// <returns></returns>
+        public List<string[]> getAllContact()
+        {
+            List<string[]> contacts = new List<string[]>();
+
+            try
+            {
+                myConnection.Open();
+                MySqlCommand myCommand = new MySqlCommand(@"SELECT * FROM `t_contact`;", myConnection);
+
+                using (MySqlDataReader myReader = myCommand.ExecuteReader())
+                {
+                    while (myReader.Read()) // Lire toutes les lignes
+                    {
+                        int id = myReader.GetInt32("idContact");
+                        string name = myReader.GetString("Name");
+                        string phone = myReader.GetString("Phone");
+                        string email = myReader.GetString("Email");
+                        string city = myReader.GetString("City");
+
+                        contacts.Add(new string[] { id.ToString(), name, phone, email, city });
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Erreur MySQL : {ex.Message}");
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+
+            return contacts;
+        }
     }
 }
